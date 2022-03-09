@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="css/dropMenu.css">
+    <script>
+        $(function(){
+            // 드롭 다운 메뉴를 클릭하면, 서브메뉴를 토글
+            // 토글 = (있으면 숨김, 없으면 보임)
+            $('nav ul li a:not(only-child)').click(function(event){ /* only-child는 자식이 한 놈인 태그만 찾는거 그니깐 씨발 a태그 한 새끼 밖에 없는 십새끼를 선택 */
+                $(this).siblings('.nav_dropdown').toggle();
+
+                // 드롭다운 메뉴 선택 시 다른 드롭다운 메뉴를 숨기기
+                $('.nav_dropdown').not($(this).siblings()).hide();
+                // 기본(디폴트) 이벤트 중지(a태그에 있는 웹강좌,커뮤니티 이 새끼들 발동을 안 시키는거임)
+                // stopPropagation 이 새끼를 안 쓰면 나는 자식만 발동하고 싶은데 부모도 같이 발동되는 현상이 일어남 그래서 이 새끼를 써서 부모새끼는 발동이 안 되게금 만드는 거임 
+                event.stopPropagation();
+            });
+            // 드롭다운 메뉴 외 영역에 클릭 시 드롭다운 메뉴를 숨기기(다른 영역을 클릭하면 기존 영역 메뉴를 숨기는)
+            $('html').click(function(){
+                $('.nav_dropdown').hide();
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <section class="navigation">
+        <!-- 로고 부분 -->
+        <div class="nav_container">
+            <div class="logo">
+                <a href="#">로고</a>
+            </div>
+        </div>
+        <!-- 메뉴 시작 부분 -->
+        <nav>
+            <ul>
+                <li>
+                    <!-- 대메뉴 -->
+                    <a href="#">웹 강좌</a>
+                    <!-- 소메뉴 -->
+                    <ul class="nav_dropdown">
+                        <li><a href="#">HTML/CSS</a></li>
+                        <li><a href="#">자바 스크립트</a></li>
+                        <li><a href="#">제이 쿼리</a></li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <!-- 대메뉴 -->
+                    <a href="#">커뮤니티</a>
+                    <!-- 소메뉴 -->
+                    <ul class="nav_dropdown">
+                        <li><a href="#">공지 게시판</a></li>
+                        <li><a href="#">자유 게시판</a></li>
+                        <li><a href="#">QNA 게시판</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <!-- 대메뉴 -->
+                    <a href="#">이용 안내</a>
+                </li>
+            </ul>
+        </nav>
+    </section>
+    
+</body>
+</html>

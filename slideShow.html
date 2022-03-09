@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function(){
+            let slideCount = $('#slider ul li').length; /* li의 길이 총 5개가 들어온다 */
+            let slideWidth = $('#slider ul li').width(); /* li의 가로를 가져온다 */
+            let slideHeight = $('#slider ul li').height(); /* li의 세로를 가져온다 */
+            let slideTotalWidth = slideCount * slideWidth; /* li의 총 가로 길이 */
+
+            $('#slider').css({width : slideWidth, height : slideHeight});
+            $('#slider ul').css({width : slideTotalWidth, marginLeft : -slideWidth}); /* 마진 레프트를 주면 오른쪽을 쭉 가잖슴? 근데 -를 주면 왼쪽으로 쭉 가겠지? 씨발 뭔 말이야 그때 홈페이지 만든거나 봐 */
+            $('#slider ul li:last-child').prependTo('#slider ul');
+
+            function moveLeft(){
+                $('#slider ul').animate({
+                    left: +slideWidth
+                }, 300, function(){ /* 300 뒤에 있는 3번째 인자가 에니메이션 효과가 다 끝난 다음에 실행 할 (동작)새끼임 콜백 함수 라는 씹새끼임 */
+                    $('#slider ul li:last-child').prependTo('#slider ul');
+                    $('#slider ul').css('left', '0');
+                })
+            }
+
+            function moveRight(){
+                $('#slider ul').animate({
+                    left: -slideWidth
+                }, 300, function(){
+                    $('#slider ul li:first-child').appendTo('#slider ul');
+                    $('#slider ul').css('left', '0');
+                })
+            }
+
+            $('a.prev').click(function(){
+                moveLeft();
+            });
+
+            $('a.next').click(function(){
+                moveRight();
+            });
+        });
+    </script>
+    <style>
+        /* 초기화 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style-type: none;
+        }
+        #slider {
+            position: relative;
+            margin: 50px auto 0 auto;
+        }
+        #slider ul{
+            position: relative;
+        }
+        #slider ul li{
+            position: relative; /* relative를 해야 좌표 설정이 된다*/
+            width: 800px;
+            height: 533px;
+            float: left;
+        }
+        a.prev, a.next{
+            position: absolute;
+            top: 40%;
+            z-index: 999;
+            display: block;
+            padding: 4% 3%;
+            background: #333333;
+            color: #fff;
+            text-decoration: none;
+            opacity: 0.6;
+            cursor: pointer;
+        }
+        a.next{
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="slider">
+        <a href="#" class="next">>></a>
+        <a href="#" class="prev"><<</a>
+        <ul>
+            <li><img src="./img/image1.jpg"></li>
+            <li><img src="./img/image2.jpg"></li>
+            <li><img src="./img/image3.jpg"></li>
+            <li><img src="./img/image4.jpg"></li>
+            <li><img src="./img/image5.jpg"></li>
+        </ul>
+    </div>
+    
+</body>
+</html>

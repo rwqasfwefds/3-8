@@ -1,0 +1,53 @@
+        /* 초기화 */
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        ul{
+            list-style-type: none;
+        }
+        .navigation{
+            height: 60px;
+            background: #333333;
+        }
+        .logo{
+            float: left;
+            margin-top: 20px;
+        }
+        .logo a, .logo a:visited{ /* visited는 a태그에 방문했을때 색을 바꾸는거 한 마디로 링크를 클릭했을때 그 링크 색이 하얀색,밑줄을 없게 만드는 거임 */
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .nav_container{
+            width: 900px;
+            margin: 0 auto;
+        }
+        nav{
+            float: right;
+        }
+        nav ul li{
+            float: left;
+        }
+        nav ul li a, nav ul li a:visited{
+            display: block;
+            padding: 0 20px;
+            line-height: 60px;
+            background: #333333;
+            color: white;
+            text-decoration: none;
+        }
+        nav ul li a:hover, nav ul li a:visited:hover{
+            background: #27cbef;
+            color: #ffffff;
+        }
+        nav ul li ul li{
+            width: 190px;
+        }
+        nav ul li ul li a{
+            padding: 15px;
+            line-height: 20px;
+        }
+        .nav_dropdown{
+            position: absolute;
+            display: none;
+        }
